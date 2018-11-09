@@ -1,4 +1,6 @@
-﻿using System;
+﻿// ReSharper disable CheckNamespace
+
+using System;
 
 using Serilog.Configuration;
 

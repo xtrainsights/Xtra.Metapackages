@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.PlatformAbstractions;
+﻿// ReSharper disable CheckNamespace
+
+using Microsoft.Extensions.PlatformAbstractions;
 
 using Serilog.Core;
 using Serilog.Events;

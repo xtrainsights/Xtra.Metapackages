@@ -1,5 +1,7 @@
 ﻿// ReSharper disable CheckNamespace
 
+using System.Diagnostics;
+
 using Microsoft.Extensions.PlatformAbstractions;
 
 using Serilog.Core;
@@ -14,10 +16,11 @@ namespace Serilog.Enrichers.ApplicationName
 
         public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory)
         {
-            if (_applicationName == null) {
-                var env = PlatformServices.Default.Application;
-                _applicationName = propertyFactory.CreateProperty(nameof(env.ApplicationName), env.ApplicationName);
-            }
+            _applicationName = _applicationName
+                ?? propertyFactory.CreateProperty(
+                    nameof(ApplicationName),
+                    PlatformServices.Default.Application.ApplicationName ?? Process.GetCurrentProcess().ProcessName
+                );
 
             logEvent.AddPropertyIfAbsent(_applicationName);
         }

@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{869C86F8-4E0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xtra.Metapackages.Serilog", "src\Xtra.Metapackages.Serilog\Xtra.Metapackages.Serilog.csproj", "{CDBBEF75-DDEF-4E26-B7F3-6A62E566B0FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xtra.Metapackages.Serilog.AspNetCore", "src\Xtra.Metapackages.Serilog.AspNetCore\Xtra.Metapackages.Serilog.AspNetCore.csproj", "{001FE844-30FD-4F0D-8A0B-4E6F4FF6A4B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,12 +31,25 @@ Global
 		{CDBBEF75-DDEF-4E26-B7F3-6A62E566B0FC}.Release|x64.Build.0 = Release|Any CPU
 		{CDBBEF75-DDEF-4E26-B7F3-6A62E566B0FC}.Release|x86.ActiveCfg = Release|Any CPU
 		{CDBBEF75-DDEF-4E26-B7F3-6A62E566B0FC}.Release|x86.Build.0 = Release|Any CPU
+		{001FE844-30FD-4F0D-8A0B-4E6F4FF6A4B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{001FE844-30FD-4F0D-8A0B-4E6F4FF6A4B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{001FE844-30FD-4F0D-8A0B-4E6F4FF6A4B5}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{001FE844-30FD-4F0D-8A0B-4E6F4FF6A4B5}.Debug|x64.Build.0 = Debug|Any CPU
+		{001FE844-30FD-4F0D-8A0B-4E6F4FF6A4B5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{001FE844-30FD-4F0D-8A0B-4E6F4FF6A4B5}.Debug|x86.Build.0 = Debug|Any CPU
+		{001FE844-30FD-4F0D-8A0B-4E6F4FF6A4B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{001FE844-30FD-4F0D-8A0B-4E6F4FF6A4B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{001FE844-30FD-4F0D-8A0B-4E6F4FF6A4B5}.Release|x64.ActiveCfg = Release|Any CPU
+		{001FE844-30FD-4F0D-8A0B-4E6F4FF6A4B5}.Release|x64.Build.0 = Release|Any CPU
+		{001FE844-30FD-4F0D-8A0B-4E6F4FF6A4B5}.Release|x86.ActiveCfg = Release|Any CPU
+		{001FE844-30FD-4F0D-8A0B-4E6F4FF6A4B5}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{CDBBEF75-DDEF-4E26-B7F3-6A62E566B0FC} = {869C86F8-4E05-431B-937F-91F7A805C7EC}
+		{001FE844-30FD-4F0D-8A0B-4E6F4FF6A4B5} = {869C86F8-4E05-431B-937F-91F7A805C7EC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {41EC9C76-1103-4A92-9EE0-60109910DB34}

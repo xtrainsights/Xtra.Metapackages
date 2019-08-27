@@ -1,4 +1,6 @@
-﻿using Serilog;
+﻿using Destructurama;
+
+using Serilog;
 using Serilog.Configuration;
 using Serilog.Enrichers.ApplicationName;
 using Serilog.Events;
@@ -28,7 +30,9 @@ namespace Xtra.Metapackages.Serilog
                 .MinimumLevel.Debug()
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
                 .MinimumLevel.Override("System", LogEventLevel.Warning)
-                .Filter.ByExcluding(_settings.Filter ?? LogFilter.Default);
+                .Filter.ByExcluding(_settings.Filter ?? LogFilter.Default)
+                .Destructure.UsingAttributes()
+                .Destructure.JsonNetTypes();
 
             if (_settings.UseConsoleSink) {
                 loggerConfiguration.WriteTo.Console(

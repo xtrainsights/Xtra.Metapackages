@@ -1,14 +1,15 @@
-﻿// ReSharper disable CheckNamespace
-
-using System;
+﻿using System;
 
 using Serilog.Configuration;
 
+using Xtra.Metapackages.Serilog.Internal;
 
-namespace Serilog.Enrichers.ApplicationName
+
+// ReSharper disable CheckNamespace
+namespace Serilog
 {
 
-    public static class ExtendLoggerEnrichmentConfiguration
+    public static class ExtensionsForLoggerEnrichmentConfiguration
     {
         public static LoggerConfiguration WithApplicationName(this LoggerEnrichmentConfiguration enrichmentConfig)
             => enrichmentConfig == null

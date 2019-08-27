@@ -1,6 +1,4 @@
-﻿// ReSharper disable CheckNamespace
-
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 using Microsoft.Extensions.PlatformAbstractions;
 
@@ -8,7 +6,7 @@ using Serilog.Core;
 using Serilog.Events;
 
 
-namespace Serilog.Enrichers.ApplicationName
+namespace Xtra.Metapackages.Serilog.Internal
 {
 
     internal class ApplicationNameEnricher : ILogEventEnricher
@@ -18,7 +16,7 @@ namespace Serilog.Enrichers.ApplicationName
         {
             _applicationName = _applicationName
                 ?? propertyFactory.CreateProperty(
-                    nameof(ApplicationName),
+                    "ApplicationName",
                     PlatformServices.Default.Application.ApplicationName ?? Process.GetCurrentProcess().ProcessName
                 );
 

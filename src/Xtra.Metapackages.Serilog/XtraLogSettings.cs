@@ -7,6 +7,7 @@ using Serilog.Events;
 
 namespace Xtra.Metapackages.Serilog
 {
+
     public class XtraLogSettings
     {
         public bool UseConsoleSink { get; set; } = true;
@@ -15,4 +16,5 @@ namespace Xtra.Metapackages.Serilog
         public IConfiguration Configuration { get; set; }
         public Func<LogEvent, bool> Filter { get; set; } = LogFilter.Default;
     }
+
 }

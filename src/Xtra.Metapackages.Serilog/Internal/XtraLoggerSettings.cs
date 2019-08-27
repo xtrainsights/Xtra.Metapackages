@@ -2,11 +2,10 @@
 
 using Serilog;
 using Serilog.Configuration;
-using Serilog.Enrichers.ApplicationName;
 using Serilog.Events;
 
 
-namespace Xtra.Metapackages.Serilog
+namespace Xtra.Metapackages.Serilog.Internal
 {
 
     internal class XtraLoggerSettings : ILoggerSettings

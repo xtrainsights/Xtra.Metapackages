@@ -6,6 +6,7 @@ using Serilog.Filters;
 
 namespace Xtra.Metapackages.Serilog
 {
+
     public static class LogFilter
     {
         ///Excludes all NHibernate logging by default	
@@ -26,4 +27,5 @@ namespace Xtra.Metapackages.Serilog
         public static readonly Func<LogEvent, bool> IncludeAll
             = le => false;
     }
+
 }

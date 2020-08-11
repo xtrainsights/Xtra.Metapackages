@@ -15,6 +15,8 @@ namespace Xtra.Metapackages.Serilog
         public bool UseSeqSink { get; set; } = false;
         public IConfiguration Configuration { get; set; }
         public Func<LogEvent, bool> Filter { get; set; } = LogFilter.Default;
+        public string SeqUrl { get; set; } = "http://localhost:5341";
+        public string SeqApiKey { get; set; } = null;
     }
 
 }

@@ -45,7 +45,7 @@ namespace Xtra.Metapackages.Serilog.Internal
             }
 
             if (_settings.UseSeqSink) {
-                loggerConfiguration.WriteTo.Seq("http://localhost:5341", compact: true);
+                loggerConfiguration.WriteTo.Seq(_settings.SeqUrl, apiKey: _settings.SeqApiKey, compact: true);
             }
 
             if (_settings.Configuration != null) {

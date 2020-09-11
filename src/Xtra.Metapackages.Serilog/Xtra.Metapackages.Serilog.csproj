@@ -5,6 +5,8 @@
     <Authors>Michael Monsour</Authors>
     <Company>Xtra Insights</Company>
     <Copyright>Copyright © Xxtra Research Pty Ltd 2018</Copyright>
+    <PackageId>Xtra.Metapackages.Serilog</PackageId>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

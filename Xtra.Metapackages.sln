@@ -7,12 +7,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{869C86F8-4E0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xtra.Metapackages.Serilog", "src\Xtra.Metapackages.Serilog\Xtra.Metapackages.Serilog.csproj", "{CDBBEF75-DDEF-4E26-B7F3-6A62E566B0FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xtra.Metapackages.Serilog.AspNetCore", "src\Xtra.Metapackages.Serilog.AspNetCore\Xtra.Metapackages.Serilog.AspNetCore.csproj", "{001FE844-30FD-4F0D-8A0B-4E6F4FF6A4B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xtra.Metapackages.Serilog.AspNetCore", "src\Xtra.Metapackages.Serilog.AspNetCore\Xtra.Metapackages.Serilog.AspNetCore.csproj", "{001FE844-30FD-4F0D-8A0B-4E6F4FF6A4B5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8A916FB4-3EE4-461C-91E2-37CF6031B4B9}"
 	ProjectSection(SolutionItems) = preProject
 		Directory.Build.props = Directory.Build.props
-		Directory.Build.targets = Directory.Build.targets
 	EndProjectSection
 EndProject
 Global

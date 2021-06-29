@@ -44,8 +44,8 @@ namespace Xtra.Metapackages.Serilog.Internal
                 loggerConfiguration.WriteTo.AzureApp();
             }
 
-            if (_settings.UseSeqSink) {
-                loggerConfiguration.WriteTo.Seq(_settings.SeqServerUrl ?? "http://localhost:5341", apiKey: _settings.SeqApiKey);
+            if (_settings.Seq?.Enabled == true) {
+                loggerConfiguration.WriteTo.Seq(_settings.Seq.ServerUrl ?? "http://localhost:5341", apiKey: _settings.Seq.ApiKey);
             }
 
             if (_settings.Configuration != null) {

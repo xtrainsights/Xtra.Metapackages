@@ -14,11 +14,10 @@ namespace Xtra.Metapackages.Serilog.Internal
 
         public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory)
         {
-            _applicationName = _applicationName
-                ?? propertyFactory.CreateProperty(
-                    "ApplicationName",
-                    PlatformServices.Default.Application.ApplicationName ?? Process.GetCurrentProcess().ProcessName
-                );
+            _applicationName ??= propertyFactory.CreateProperty(
+                "ApplicationName",
+                PlatformServices.Default.Application.ApplicationName ?? Process.GetCurrentProcess().ProcessName
+            );
 
             logEvent.AddPropertyIfAbsent(_applicationName);
         }

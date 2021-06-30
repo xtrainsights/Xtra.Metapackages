@@ -25,7 +25,7 @@ namespace Xtra.Metapackages.Serilog
 
         ///Excludes nothing!
         public static readonly Func<LogEvent, bool> IncludeAll
-            = le => false;
+            = _ => false;
     }
 
 }

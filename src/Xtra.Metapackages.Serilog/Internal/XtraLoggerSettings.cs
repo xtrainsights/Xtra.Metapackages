@@ -1,8 +1,9 @@
 ﻿using Destructurama;
-
+using Microsoft.Extensions.Configuration;
 using Serilog;
 using Serilog.Configuration;
 using Serilog.Events;
+using Xtra.Common.Abstractions.Models.Settings;
 
 
 namespace Xtra.Metapackages.Serilog.Internal
@@ -44,8 +45,9 @@ namespace Xtra.Metapackages.Serilog.Internal
                 loggerConfiguration.WriteTo.AzureApp();
             }
 
-            if (_settings.Seq?.Enabled == true) {
-                loggerConfiguration.WriteTo.Seq(_settings.Seq.ServerUrl ?? "http://localhost:5341", apiKey: _settings.Seq.ApiKey);
+            var seqSettings = _settings.Seq ?? _settings.Configuration?.GetSection("Seq").Get<SeqSettings>();
+            if (seqSettings?.Enabled == true) {
+                loggerConfiguration.WriteTo.Seq(seqSettings.ServerUrl ?? "http://localhost:5341", apiKey: seqSettings.ApiKey);
             }
 
             if (_settings.Configuration != null) {

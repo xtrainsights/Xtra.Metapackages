@@ -1,8 +1,11 @@
 ﻿using Destructurama;
+
 using Microsoft.Extensions.Configuration;
+
 using Serilog;
 using Serilog.Configuration;
 using Serilog.Events;
+
 using Xtra.Common.Abstractions.Models.Settings;
 
 
@@ -32,7 +35,8 @@ namespace Xtra.Metapackages.Serilog.Internal
                 .MinimumLevel.Override("System", LogEventLevel.Warning)
                 .Filter.ByExcluding(_settings.Filter ?? LogFilter.Default)
                 .Destructure.UsingAttributes()
-                .Destructure.JsonNetTypes();
+                .Destructure.JsonNetTypes()
+                .Destructure.With<LookupDestructuringPolicy<string, string>>();
 
             if (_settings.UseConsoleSink) {
                 loggerConfiguration.WriteTo.Console(

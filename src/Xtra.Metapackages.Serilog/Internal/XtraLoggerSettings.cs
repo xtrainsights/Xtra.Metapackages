@@ -36,7 +36,8 @@ namespace Xtra.Metapackages.Serilog.Internal
                 .Filter.ByExcluding(_settings.Filter ?? LogFilter.Default)
                 .Destructure.UsingAttributes()
                 .Destructure.JsonNetTypes()
-                .Destructure.With<LookupDestructuringPolicy<string, string>>();
+                .Destructure.With<LookupDestructuringPolicy<string, string>>()
+                .Destructure.With<LookupDestructuringPolicy>();
 
             if (_settings.UseConsoleSink) {
                 loggerConfiguration.WriteTo.Console(

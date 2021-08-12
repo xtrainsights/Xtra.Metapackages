@@ -79,7 +79,7 @@ namespace Xtra.Metapackages.Serilog
             => t.GetTypeInfo()
                 .ImplementedInterfaces
                 .Where(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IEnumerable<>))
-                .Select(i => i.GenericTypeArguments.FirstOrDefault(a => a.GetGenericTypeDefinition() == typeof(IGrouping<,>)))
+                .Select(i => i.GenericTypeArguments.FirstOrDefault(a => a.IsGenericType && a.GetGenericTypeDefinition() == typeof(IGrouping<,>)))
                 .FirstOrDefault();
 
 

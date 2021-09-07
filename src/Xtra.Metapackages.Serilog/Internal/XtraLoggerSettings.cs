@@ -6,7 +6,7 @@ using Serilog;
 using Serilog.Configuration;
 using Serilog.Events;
 
-using Xtra.Common.Abstractions.Models.Settings;
+using Xtra.Models.Settings;
 
 
 namespace Xtra.Metapackages.Serilog.Internal

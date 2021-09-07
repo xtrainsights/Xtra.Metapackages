@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 
 using Serilog.Events;
 
-using Xtra.Common.Abstractions.Models.Settings;
+using Xtra.Models.Settings;
 
 
 namespace Xtra.Metapackages.Serilog

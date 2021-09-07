@@ -35,9 +35,15 @@ namespace Xtra.Metapackages.Serilog.AspNetCore
                 var elapsedMs = GetElapsedMilliseconds(start, Stopwatch.GetTimestamp());
 
                 var statusCode = httpContext.Response?.StatusCode;
-                var level = statusCode > 499 ? LogEventLevel.Error : LogEventLevel.Information;
 
-                var log = level == LogEventLevel.Error ? LogForErrorContext(httpContext) : Log;
+                var level = statusCode >= 500
+                    ? LogEventLevel.Error
+                    : LogEventLevel.Verbose;
+
+                var log = level == LogEventLevel.Error
+                    ? LogForErrorContext(httpContext)
+                    : Log;
+
                 log.Write(level, MessageTemplate, httpContext.Request.Method, GetPath(httpContext), statusCode, elapsedMs);
             }
             //Never caught, because `LogException()` returns false.

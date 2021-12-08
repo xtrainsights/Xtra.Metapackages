@@ -15,9 +15,7 @@ namespace Xtra.Metapackages.Serilog.Internal
     internal class XtraLoggerSettings : ILoggerSettings
     {
         public XtraLoggerSettings(XtraLogSettings settings)
-        {
-            _settings = settings;
-        }
+            => _settings = settings;
 
 
         public void Configure(LoggerConfiguration loggerConfiguration)

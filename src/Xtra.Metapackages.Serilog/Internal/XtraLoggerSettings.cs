@@ -1,4 +1,6 @@
-﻿using Destructurama;
+﻿using System.Linq;
+
+using Destructurama;
 
 using Microsoft.Extensions.Configuration;
 
@@ -31,11 +33,14 @@ namespace Xtra.Metapackages.Serilog.Internal
                 .MinimumLevel.Debug()
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
                 .MinimumLevel.Override("System", LogEventLevel.Warning)
-                .Filter.ByExcluding(_settings.Filter ?? LogFilter.Default)
                 .Destructure.UsingAttributes()
                 .Destructure.JsonNetTypes()
                 .Destructure.With<LookupDestructuringPolicy<string, string>>()
                 .Destructure.With<LookupDestructuringPolicy>();
+
+            if (_settings.Filters != null && _settings.Filters.Any()) {
+                loggerConfiguration.Filter.With(_settings.Filters);
+            }
 
             if (_settings.UseConsoleSink) {
                 loggerConfiguration.WriteTo.Console(

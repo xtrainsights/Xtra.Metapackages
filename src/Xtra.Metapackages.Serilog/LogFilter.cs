@@ -71,10 +71,17 @@ namespace Xtra.Metapackages.Serilog
 
 
         /// <summary>
-        /// Excludes all NHibernate logging and Airtime SQL Cache logging
+        /// Excludes all Airtime SQL Cache logging and NHibernate logging
         /// </summary>
         public static readonly LogFilter Default
             = ExcludeNHibernate + ExcludeSqlCaching;
+
+
+        /// <summary>
+        /// Excludes all Airtime SQL Cache logging and NHibernate logging except for SQL queries and statements
+        /// </summary>
+        public static readonly LogFilter DefaultWithSql
+            = ExcludeNHibernateNonSql + ExcludeSqlCaching;
 
 
         private readonly List<Func<LogEvent, bool>> _conditions;

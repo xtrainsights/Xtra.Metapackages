@@ -5,16 +5,10 @@
     <Authors>Michael Monsour</Authors>
     <Company>Xtra Insights</Company>
     <Copyright>Copyright © Xxtra Research Pty Ltd 2019</Copyright>
-    <PackageId>Xtra.Metapackages.Serilog.AspNetCore</PackageId>
     <LangVersion>latest</LangVersion>
-    <UseFullSemVerForNuGet>false</UseFullSemVerForNuGet>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GitVersion.MsBuild" Version="5.10.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
   </ItemGroup>
 

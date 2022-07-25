@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
-
-using Microsoft.Extensions.PlatformAbstractions;
+using System.Reflection;
 
 using Serilog.Core;
 using Serilog.Events;
@@ -16,15 +15,16 @@ namespace Xtra.Metapackages.Serilog.Internal
         {
             _applicationName ??= propertyFactory.CreateProperty(
                 "ApplicationName",
-                PlatformServices.Default.Application.ApplicationName ?? Process.GetCurrentProcess().ProcessName
+                ApplicationName ?? Process.GetCurrentProcess().ProcessName
             );
-
             logEvent.AddPropertyIfAbsent(_applicationName);
         }
 
 
         private LogEventProperty _applicationName;
 
+
+        private static readonly string ApplicationName = Assembly.GetEntryAssembly()?.GetName().Name;
     }
 
 }

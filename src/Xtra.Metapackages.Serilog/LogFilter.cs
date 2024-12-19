@@ -9,14 +9,10 @@ using Serilog.Filters;
 
 namespace Xtra.Metapackages.Serilog;
 
-public class LogFilter : ILogEventFilter
+public class LogFilter(IEnumerable<Func<LogEvent, bool>> areEnabled) : ILogEventFilter
 {
     public LogFilter(params Func<LogEvent, bool>[] isEnabled)
         : this(isEnabled.AsEnumerable()) { }
-
-
-    public LogFilter(IEnumerable<Func<LogEvent, bool>> areEnabled)
-        => _conditions = areEnabled.ToList();
 
 
     public bool IsEnabled(LogEvent logEvent)
@@ -83,5 +79,5 @@ public class LogFilter : ILogEventFilter
         = ExcludeNHibernateNonSql + ExcludeSqlCaching;
 
 
-    private readonly List<Func<LogEvent, bool>> _conditions;
+    private readonly List<Func<LogEvent, bool>> _conditions = areEnabled.ToList();
 }

@@ -17,22 +17,22 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-quality: 'ga'
+        dotnet-version: 8.x
+
     - name: Setup GitVersion
-      uses: gittools/actions/gitversion/setup@v0.9.15
+      uses: gittools/actions/gitversion/setup@v3.1.1
       with:
         versionSpec: 5.x
 
     - name: Execute GitVersion
-      uses: gittools/actions/gitversion/execute@v0.9.15
+      uses: gittools/actions/gitversion/execute@v3.1.1
       id: gitversion
       with:
-        additionalArguments: /output BuildServer
         useConfigFile: true
-
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: 7.x
 
     - name: Restore
       run: dotnet restore
@@ -47,22 +47,18 @@ jobs:
       run: dotnet pack -c ${{ env.buildConfiguration }} -p:PackageOutputPath="${{ github.workspace }}/artifacts/" -p:PackageVersion=${{ steps.gitversion.outputs.nuGetVersion }}
 
     - name: Upload
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: nuget
+        compression-level: 0
         path: |
           ${{ github.workspace }}/artifacts/*.nupkg
           ${{ github.workspace }}/artifacts/*.snupkg
 
-    - name: Push (Pre-release)
-      if: ${{ steps.gitversion.outputs.nuGetPreReleaseTag != '' }}
-      uses: lethek/os-specific-run@v1.0.6
-      with:
-        linux: dotnet nuget push "${{ github.workspace }}/artifacts/*.nupkg" -s ${{ secrets.MYGET_SOURCE }} -k ${{ secrets.MYGET_API_KEY }} --skip-duplicate
-        windows: dotnet nuget push "${{ github.workspace }}\artifacts\*.nupkg" -s ${{ secrets.MYGET_SOURCE }} -k ${{ secrets.MYGET_API_KEY }} --skip-duplicate
-
-    - name: Push (Release)
-      if: ${{ steps.gitversion.outputs.nuGetPreReleaseTag == '' }}
+    - name: Push
+      env:
+        NUGET_SOURCE: ${{ secrets.NUGET_SOURCE }}
+      if: ${{ env.NUGET_SOURCE != '' }}
       uses: lethek/os-specific-run@v1.0.6
       with:
         linux: dotnet nuget push "${{ github.workspace }}/artifacts/*.nupkg" -s ${{ secrets.NUGET_SOURCE }} -k ${{ secrets.NUGET_API_KEY }} --skip-duplicate

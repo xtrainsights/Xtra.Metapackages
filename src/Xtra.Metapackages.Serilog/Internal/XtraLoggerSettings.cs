@@ -13,12 +13,8 @@ using Xtra.Models.Settings;
 
 namespace Xtra.Metapackages.Serilog.Internal;
 
-internal class XtraLoggerSettings : ILoggerSettings
+internal class XtraLoggerSettings(XtraLogSettings settings) : ILoggerSettings
 {
-    public XtraLoggerSettings(XtraLogSettings settings)
-        => _settings = settings;
-
-
     public void Configure(LoggerConfiguration loggerConfiguration)
     {
         loggerConfiguration
@@ -37,31 +33,28 @@ internal class XtraLoggerSettings : ILoggerSettings
             .Destructure.With<LookupDestructuringPolicy<string, string>>()
             .Destructure.With<LookupDestructuringPolicy>();
 
-        if (_settings.Filters != null && _settings.Filters.Any()) {
-            loggerConfiguration.Filter.With(_settings.Filters);
+        if (settings.Filters != null && settings.Filters.Any()) {
+            loggerConfiguration.Filter.With(settings.Filters);
         }
 
-        if (_settings.UseConsoleSink) {
+        if (settings.UseConsoleSink) {
             loggerConfiguration.WriteTo.Console(
                 LogEventLevel.Information,
                 "{Message:lj}{NewLine}{Exception}"
             );
         }
 
-        if (_settings.UseAzureAppSink) {
+        if (settings.UseAzureAppSink) {
             loggerConfiguration.WriteTo.AzureApp();
         }
 
-        var seqSettings = _settings.Seq ?? _settings.Configuration?.GetSection("Seq").Get<SeqSettings>();
+        var seqSettings = settings.Seq ?? settings.Configuration?.GetSection("Seq").Get<SeqSettings>();
         if (seqSettings?.Enabled == true) {
             loggerConfiguration.WriteTo.Seq(seqSettings.ServerUrl ?? "http://localhost:5341", apiKey: seqSettings.ApiKey);
         }
 
-        if (_settings.Configuration != null) {
-            loggerConfiguration.ReadFrom.Configuration(_settings.Configuration);
+        if (settings.Configuration != null) {
+            loggerConfiguration.ReadFrom.Configuration(settings.Configuration);
         }
     }
-
-
-    private readonly XtraLogSettings _settings;
 }

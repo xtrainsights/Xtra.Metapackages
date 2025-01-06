@@ -6,6 +6,7 @@
     <Company>Xtra Insights</Company>
     <Copyright>Copyright © Xxtra Research Pty Ltd 2019</Copyright>
     <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>

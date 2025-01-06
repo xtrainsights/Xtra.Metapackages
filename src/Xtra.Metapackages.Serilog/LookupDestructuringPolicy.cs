@@ -24,15 +24,15 @@ public class LookupDestructuringPolicy<TKey, TElement> : IDestructuringPolicy
     public bool TryDestructure(object value, ILogEventPropertyValueFactory propertyValueFactory, out LogEventPropertyValue result)
     {
         if (value is not IEnumerable<IGrouping<TKey, TElement>> lookup) {
-            result = null;
+            result = null!;
             return false;
         }
 
         var properties = new List<LogEventProperty>();
         foreach (var grouping in lookup) {
-            var key = grouping.Key.ToString();
+            var key = grouping.Key!.ToString();
             var array = new SequenceValue(grouping.Select(x => propertyValueFactory.CreatePropertyValue(x, true)));
-            properties.Add(new LogEventProperty(key, array));
+            properties.Add(new LogEventProperty(key!, array));
         }
 
         result = new StructureValue(properties);
@@ -56,7 +56,7 @@ public class LookupDestructuringPolicy : IDestructuringPolicy
         var groupingType = TypeCache.GetOrAdd(objectType, GetGroupingType);
 
         if (groupingType == null) {
-            result = null;
+            result = null!;
             return false;
         }
 
@@ -66,7 +66,7 @@ public class LookupDestructuringPolicy : IDestructuringPolicy
         foreach (var grouping in (IEnumerable)value) {
             var key = accessor[grouping, "Key"];
             var array = new SequenceValue(((IEnumerable<object>)grouping).Select(x => propertyValueFactory.CreatePropertyValue(x, true)));
-            properties.Add(new LogEventProperty(key.ToString(), array));
+            properties.Add(new LogEventProperty(key.ToString()!, array));
         }
 
         result = new StructureValue(properties);
@@ -74,7 +74,7 @@ public class LookupDestructuringPolicy : IDestructuringPolicy
     }
 
 
-    private static Type GetGroupingType(Type t)
+    private static Type? GetGroupingType(Type t)
         => t.GetTypeInfo()
             .ImplementedInterfaces
             .Where(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IEnumerable<>))
@@ -82,5 +82,5 @@ public class LookupDestructuringPolicy : IDestructuringPolicy
             .FirstOrDefault();
 
 
-    private static readonly ConcurrentDictionary<Type, Type> TypeCache = new();
+    private static readonly ConcurrentDictionary<Type, Type?> TypeCache = new();
 }

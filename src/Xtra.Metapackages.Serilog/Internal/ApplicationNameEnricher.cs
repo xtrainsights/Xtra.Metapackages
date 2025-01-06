@@ -20,8 +20,8 @@ internal class ApplicationNameEnricher : ILogEventEnricher
     }
 
 
-    private LogEventProperty _applicationName;
+    private LogEventProperty? _applicationName;
 
 
-    private static readonly string ApplicationName = Assembly.GetEntryAssembly()?.GetName().Name;
+    private static readonly string? ApplicationName = Assembly.GetEntryAssembly()?.GetName().Name;
 }

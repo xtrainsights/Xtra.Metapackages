@@ -15,12 +15,8 @@ using GlobalLog = Serilog.Log;
 
 namespace Xtra.Metapackages.Serilog.AspNetCore;
 
-public class SerilogMiddleware
+public class SerilogMiddleware(RequestDelegate next)
 {
-    public SerilogMiddleware(RequestDelegate next)
-        => _next = next ?? throw new ArgumentNullException(nameof(next));
-
-
     public async Task Invoke(HttpContext httpContext)
     {
         if (httpContext == null) {
@@ -85,7 +81,7 @@ public class SerilogMiddleware
         => httpContext.Features.Get<IHttpRequestFeature>()?.RawTarget ?? httpContext.Request.Path.ToString();
 
 
-    private readonly RequestDelegate _next;
+    private readonly RequestDelegate _next = next ?? throw new ArgumentNullException(nameof(next));
 
     private const string MessageTemplate = "HTTP {RequestMethod} {RequestPath} responded {StatusCode} in {Elapsed:0.0000} ms";
 
